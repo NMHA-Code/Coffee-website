@@ -1,33 +1,40 @@
 <?php
 
+use App\Http\Controllers\LayoutDefault;
 use Illuminate\Support\Facades\Route;
 
 
+// Route Default
+Route::get('/',[LayoutDefault::class,'index']);
+// Router Login
+Route::get('/login', function () {
+    return 'Login nhe';
+});
 // Router Users
-Route::get('/', function () {
-    return 'xin chao laravel nhe';
+Route::get('/users', function () {
+    return 'xin chao users nhe';
 });
 // Router Categories
-Route::get('/', function () {
-    return 'xin chao laravel nhe';
+Route::get('/categories', function () {
+    return 'xin chao categories nhe';
 });
 // Router Products
-Route::get('/', function () {
-    return 'xin chao laravel nhe';
+Route::get('/products', function () {
+    return 'xin chao products nhe';
 });
 // Router Inventorys
-Route::get('/', function () {
-    return 'xin chao laravel nhe';
+Route::get('/invantorys', function () {
+    return 'xin chao inventorys nhe';
 });
 // Router Orders
-Route::get('/', function () {
-    return 'xin chao laravel nhe';
+Route::get('/orders', function () {
+    return 'xin chao orders nhe';
 });
 // Router Orders_item
-Route::get('/', function () {
-    return 'xin chao laravel nhe';
+Route::get('/orders_item', function () {
+    return 'xin chao orders nhe';
 });
 // Router Suppliers
-Route::get('/', function () {
-    return 'xin chao laravel nhe';
+Route::get('/suppliers', function () {
+    return 'xin chao suppliers nhe';
 });
