@@ -1,85 +1,205 @@
+:root {
+  /* sidebar */
+  --sidebar-width: 260px;
+  --sidebar-collapsed-width: 78px;
+  --sidebar-bg: #2b78d6;
+  --sidebar-border: 12px;
+  --accent: #2b9cff;
+  --text: #fff;
+  --muted: #9fb4d6;
+  --surface: #ffffff;
+  --shadow: 0 6px 18px rgba(8, 20, 40, 0.12);
 
-:root{
---sidebar-width: 260px;
---sidebar-collapsed: 70px;
---topbar-height: 64px;
-}
-html,body{height:100%;}
-body{margin:0;font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
-
-
-/* SIDEBAR: fixed full height on left */
-.sidebar{
-position:fixed;
-left:0;top:0;bottom:0;
-width:var(--sidebar-width);
-background:#0d6efd;
-color:#fff;
-overflow-y:auto;
-transition:width .25s ease;
-z-index:1030;
+  
 }
 
-
-.sidebar .brand{
-height:var(--topbar-height);
-display:flex;align-items:center;padding:0 1rem;border-bottom:1px solid rgba(255,255,255,0.06);
-}
-.sidebar .brand img{height:36px}
-.sidebar .nav-link{color:rgba(255,255,255,0.95);}
-.sidebar .nav-link .fa-fw{width:1.25rem}
-.sidebar .nav-link:hover{background:rgba(255,255,255,0.06)}
-
-
-.sidebar.collapsed{width:var(--sidebar-collapsed)}
-.sidebar.collapsed .menu-text{display:none}
-.sidebar.collapsed .brand span{display:none}
-.sidebar.collapsed .brand img{margin:auto}
-
-
-/* MAIN area (to the right of sidebar) */
-.main-wrapper{
-margin-left:var(--sidebar-width);
-transition:margin-left .25s ease;
-min-height:100vh;
-}
-.main-wrapper.collapsed{margin-left:var(--sidebar-collapsed)}
-
-
-/* Top header sits at top, next to sidebar */
-.topbar{
-position:fixed;
-left:var(--sidebar-width);
-right:0;top:0;height:var(--topbar-height);
-display:flex;align-items:center;justify-content:space-between;padding:0 1rem;background:#fff;border-bottom:1px solid rgba(0,0,0,0.06);z-index:1020;
-transition:left .25s ease;
-}
-.main-wrapper.collapsed .topbar{left:var(--sidebar-collapsed)}
-
-.active{
-    background: green;
-    color: black;
-}
-.content-area{
-padding:1.5rem; /* gap */
-padding-top:calc(var(--topbar-height) + 1.5rem); /* keep content below header */
-background:#f8f9fa;
-min-height:100vh;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-
-.avatar-circle{width:40px;height:40px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#e9ecef;color:#212529;font-weight:600}
-
-
-@media (max-width:992px){
-.sidebar{left:-100%;position:fixed}
-.sidebar.show-mobile{left:0}
-.main-wrapper{margin-left:0}
-.topbar{left:0}
-#btnToggle{
-    display: none;
+html,
+body {
+  height: 100%;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: #f6f8fb;
+  color: #333;
 }
-.main-wrapper.collapsed .topbar{left:0}
-.sidebar.collapsed{width:260px}
-.sidebar.collapsed .menu-text{display:inline}
+
+.containers {
+  display: flex;
+  align-items: stretch;
+  min-height: 100vh;
+}
+
+/* ---------- Sidebar / Navigation ---------- */
+.navigation {
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  background: var(--sidebar-bg);
+  color: var(--text);
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  overflow: auto;
+  transition: width 0.3s ease, transform 0.3s ease;
+  box-shadow: var(--shadow);
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+}
+.navigation li {
+  margin: 1rem 0;
+  border-radius: var(--sidebar-border);
+}
+.navigation a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 1rem 1.1rem;
+  color: var(--text);
+  text-decoration: none;
+}
+.navigation a .icon {
+  width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* flex-shrink: 0 */
+}
+.navigation a .title {
+  font-size: 1rem;
+  /* font-weight: 600; */
+  color: var(--text);
+}
+.navigation a:hover {
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateX(4px)
+}
+.navigation.active {
+  width: var(--sidebar-collapsed-width);
+  min-width: var(--sidebar-collapsed-width);
+}
+
+/* hide title when collapsed */
+.navigation.active .title {
+  display: none
+}
+
+.navigation.active .icon {
+  width: 100%;
+  justify-content: center
+}
+.navigation.active a {
+  padding: 12px 8px;
+  justify-content: center
+}
+
+/* ---------- Main content area ---------- */
+.main {
+  margin-left: var(--sidebar-width);
+  flex: 1;
+  min-height: 100vh;
+  flex-direction: column;
+  transition: margin-left .28s ease;
+}
+.main.active {
+  margin-left: var(--sidebar-collapsed-width)
+}
+
+/* ---------- Header ---------- */
+.menus {
+  height: 64px;
+  padding: 0 18px;
+  background: var(--surface);
+  border-bottom: 1px solid rgba(34, 51, 80, 0.05);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+}
+.menus .toggle {
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px
+}
+.menus .toggle i {
+  font-size: 18px;
+  color: var(--sidebar-bg)
+}
+.menus .user {
+  width: 50px;
+  height: auto;
+}
+.menus .user img {
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid #333;
+  object-fit: cover;
+  box-shadow: var(--shadow)
+}
+
+/* content area */
+.content-area {
+  height: 100%;
+  background: #fff;
+  border: 1px solid #333;
+  flex: 1;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 992px) {
+
+  .navigation {
+    transform: translateX(-110%);
+    box-shadow: none
+  }
+  .navigation.active a {
+    justify-content: flex-start; 
+    padding: 12px 16px;
+  }
+  .navigation.active .icon {
+    width: 44px;
+    flex: 0 0 44px; 
+    justify-content: center;
+  }
+  .navigation.active .title {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 8px; 
+  }
+  .navigation a {
+    gap: 12px;
+    align-items: center;
+  }
+
+  .navigation.active {
+    transform: translateX(0);
+    width: var(--sidebar-width);
+    min-width: var(--sidebar-width);
+  }
+  .main {
+    margin-left: 0
+  }
+
+  .main.active {
+    margin-left: var(--sidebar-width)
+  }
+
+  /* darken background when sidebar open (you can toggle an overlay via JS if needed) */
+}
+
+@media (max-width: 480px) {
+  :root {
+    --sidebar-width: 240px
+  }
+  .menus {
+    padding: 0 12px
+  }
+  .navigation a .title {
+    font-size: 14px
+  }
 }

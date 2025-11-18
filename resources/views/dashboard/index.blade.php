@@ -1,4 +1,4 @@
 @extends('layouts.LayoutDefault');
 @section('content')
-    <h1>Day la products</h1>
+    <h1>Day la dashboard</h1>
 @endsection

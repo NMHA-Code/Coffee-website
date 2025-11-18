@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LayoutDefault;
+use App\Http\Controllers\Products;
 use Illuminate\Support\Facades\Route;
 
 
@@ -10,7 +12,11 @@ Route::get('/',[LayoutDefault::class,'index']);
 Route::get('/login', function () {
     return 'Login nhe';
 });
-// Router Users
+
+// Router Dashboard
+Route::get("/dashboard", [DashboardController::class , 'index']);
+
+// // Router Users
 Route::get('/users', function () {
     return 'xin chao users nhe';
 });
@@ -19,9 +25,7 @@ Route::get('/categories', function () {
     return 'xin chao categories nhe';
 });
 // Router Products
-Route::get('/products', function () {
-    return 'xin chao products nhe';
-});
+Route::get('/products', [Products::class, 'index']);
 // Router Inventorys
 Route::get('/invantorys', function () {
     return 'xin chao inventorys nhe';

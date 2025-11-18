@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use function Ramsey\Uuid\v1;
-
-class Products extends Controller
+class DashboardController extends Controller
 {
     public function index(){
-        return view("products.index");
+        return view("dashboard.index");
     }
 }
