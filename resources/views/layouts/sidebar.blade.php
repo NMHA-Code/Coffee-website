@@ -1,6 +1,6 @@
 <div class="navigation">
     <span class="d-flex align-items-center justify-content-center pt-2">
-        <img src="images/image.png" alt="logo" width="50px"/>
+        <img src="{{ asset("images/image.png") }}" alt="logo" width="50px"/>
     </span>
     <ul class="p-2">
         <li>
@@ -22,7 +22,7 @@
         </li>
 
         <li>
-            <a href="#">
+            <a href="/orders">
                 <span class="icon">
                     <i class="fa-solid fa-plus"></i>
                 </span>
@@ -31,7 +31,7 @@
         </li>
 
         <li>
-            <a href="#">
+            <a href="/orders_item">
                 <span class="icon">
                     <i class="fa-solid fa-file-medical"></i>
                 </span>
@@ -49,7 +49,7 @@
         </li>
 
         <li>
-            <a href="#">
+            <a href="/users">
                 <span class="icon">
                     <i class="fa-solid fa-user-plus"></i>
                 </span>

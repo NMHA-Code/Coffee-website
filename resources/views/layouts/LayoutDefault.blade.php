@@ -10,18 +10,25 @@
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
     <title>Document</title>
 </head>
 
 <body>
     <div class="containers">
         @include('layouts.sidebar')
-        <!-- ========================= Main ==================== -->
         <div class="main d-flex">
             @include('layouts.header')
-
             <main class="content-area m-4">
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show w-25 alert-position" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+                @if (session('error'))
+                    <div class="alert alert-danger w-25 alert-position">{{ session('error') }}</div>
+                @endif
                 @yield('content')
             </main>
         </div>
@@ -33,7 +40,20 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
         integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
         crossorigin="anonymous"></script>
-    <script src="js/sidebar.js">
+    <script src="{{ asset('js/sidebar.js') }}"></script>
+    <script>
+        document.querySelectorAll('.alert-position').forEach(alert => {
+            setTimeout(() => {
+                alert.classList.add('alert-fadeout');
+                alert.addEventListener('animationend', () => alert.remove());
+            }, 3000);
+
+            // Vẫn cho phép bấm X để tắt ngay
+            alert.querySelector('.btn-close')?.addEventListener('click', () => {
+                alert.classList.add('alert-fadeout');
+                alert.addEventListener('animationend', () => alert.remove());
+            });
+        });
     </script>
 </body>
 

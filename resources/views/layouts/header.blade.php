@@ -3,6 +3,6 @@
         <i class="fa-solid fa-bars"></i>
     </div>
     <div class="user">
-        <img src="images/image.png" alt="Logo">
+        <img src="{{ asset("images/image.png") }}" alt="Logo">
     </div>
 </div>
